@@ -3,4 +3,9 @@ const { getActionChoice } = require('./getActionChoice');
 const { buildTable } = require('./buildTable');
 const { generateTrack } = require('./generateTrack');
 
-module.exports = { displayTrackStatsMsg, getActionChoice, buildTable, generateTrack };
+module.exports = {
+  displayTrackStatsMsg,
+  getActionChoice,
+  buildTable,
+  generateTrack,
+};
