@@ -5,9 +5,9 @@ function removeLastTalk(state) {
 
   const prevState = stateMap.resolve(key);
 
-  stateMap.set('_undo', key);
+  stateMap.set('undo', key);
 
-  return stateMap.chain(prevState, key);
+  return stateMap.chain({ ...prevState }, key);
 }
 
 module.exports = { removeLastTalk };

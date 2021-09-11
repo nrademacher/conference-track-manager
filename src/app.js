@@ -9,8 +9,8 @@ const {
   removeLastTalk,
   saveToFile,
   writeToCSV,
-  undoRemove,
   previewSchedule,
+  undoRemoveTalk,
 } = require('./actions');
 
 async function selectAction() {
@@ -32,7 +32,7 @@ async function selectAction() {
       removeLastTalk({ ...state });
       return selectAction();
     case 'Redo':
-      undoRemove({ ...state });
+      undoRemoveTalk({ ...state });
       return selectAction();
     case 'View':
       previewSchedule(state.talks);
@@ -71,4 +71,3 @@ function init() {
 }
 
 init();
-

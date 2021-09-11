@@ -8,7 +8,7 @@ class StateMap extends Map {
 
   chain(newState, key = Date.now(), oldState = this.get('current')) {
     this.set(key, { ...oldState });
-    this.set('previous', { ...oldState });
+    this.set('previous', key);
     this.set('current', { ...newState });
 
     return { newState, key, oldState };
@@ -24,6 +24,16 @@ class StateMap extends Map {
       return this.resolve(res);
     }
     return false;
+  }
+
+  resolveVal(name, key = 'current') {
+    const state = this.resolve(key);
+
+    if (state[name]) {
+      if (state[name] instanceof Array) {
+        return state[name][state[name].length - 1];
+      }
+    }
   }
 }
 
