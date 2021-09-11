@@ -41,4 +41,3 @@ function buildTable(talks) {
 }
 
 module.exports = { buildTable };
-

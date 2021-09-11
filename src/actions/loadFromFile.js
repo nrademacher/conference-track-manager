@@ -55,4 +55,3 @@ async function loadFromFile() {
 }
 
 module.exports = { loadFromFile };
-
