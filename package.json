@@ -4,7 +4,10 @@
   "description": "A CLI tool for managing conference tracks",
   "main": "app.js",
   "scripts": {
-    "test": "jest tests"
+    "start": "node src/app",
+    "test": "jest tests",
+    "format": "prettier --ignore-path .gitignore \"src/**/*.js\" --write",
+    "lint": "eslint src --fix"
   },
   "author": "Nikolay Rademacher",
   "license": "MIT",
