@@ -5,6 +5,7 @@ const { previewSchedule } = require('./previewSchedule');
 const { printTrackTables } = require('./printTrackTables');
 const { saveToFile } = require('./saveToFile');
 const { loadFromFile } = require('./loadFromFile');
+const { writeToCSV } = require('./writeToCSV');
 
 module.exports = {
   addTalk,
@@ -14,4 +15,5 @@ module.exports = {
   printTrackTables,
   saveToFile,
   loadFromFile,
+  writeToCSV,
 };
