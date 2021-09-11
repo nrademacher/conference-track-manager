@@ -3,6 +3,8 @@ const { removeLastTalk } = require('./removeLastTalk');
 const { undoRemoveTalk } = require('./undoRemoveTalk');
 const { previewSchedule } = require('./previewSchedule');
 const { printTrackTables } = require('./printTrackTables');
+const { saveToFile } = require('./saveToFile');
+const { loadFromFile } = require('./loadFromFile');
 
 module.exports = {
   addTalk,
@@ -10,4 +12,6 @@ module.exports = {
   undoRemoveTalk,
   previewSchedule,
   printTrackTables,
+  saveToFile,
+  loadFromFile,
 };
