@@ -1,3 +1,4 @@
 const { parseMins } = require('./parseMins');
+const { incrementTime } = require('./incrementTime.js');
 
-module.exports = { parseMins };
+module.exports = { parseMins, incrementTime };
