@@ -1,0 +1,17 @@
+const { APP_VERSION } = require('./version');
+const {
+  MIN_TALK_DURATION,
+  MAX_TALK_DURATION,
+  MIN_TRACK_DURATION,
+  MAX_TRACK_DURATION,
+  BASE_TALK_START_TIME,
+} = require('./parameters');
+
+module.exports = {
+  APP_VERSION,
+  MIN_TRACK_DURATION,
+  MAX_TRACK_DURATION,
+  MIN_TALK_DURATION,
+  MAX_TALK_DURATION,
+  BASE_TALK_START_TIME,
+};
