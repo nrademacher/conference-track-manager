@@ -1,3 +1,4 @@
 const { displayTrackStatsMsg } = require('./displayTrackStatsMsg');
+const { getActionChoice } = require('./getActionChoice');
 
-module.exports = { displayTrackStatsMsg };
+module.exports = { displayTrackStatsMsg, getActionChoice };
