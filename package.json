@@ -1,0 +1,11 @@
+{
+  "name": "conference-track-manager",
+  "version": "1.0.0",
+  "description": "A CLI tool for managing conference tracks",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest tests"
+  },
+  "author": "Nikolay Rademacher",
+  "license": "MIT"
+}
