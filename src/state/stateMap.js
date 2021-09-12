@@ -25,16 +25,6 @@ class StateMap extends Map {
     }
     return false;
   }
-
-  resolveVal(name, key = 'current') {
-    const state = this.resolve(key);
-
-    if (state[name]) {
-      if (state[name] instanceof Array) {
-        return state[name][state[name].length - 1];
-      }
-    }
-  }
 }
 
 module.exports = { StateMap };
