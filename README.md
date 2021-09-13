@@ -51,9 +51,11 @@ Since this is a Node.js app, `node` is required to run it. Any relatively recent
 
 With `node` installed, run `npm i` in the root folder to install the dependencies, then `npm start` or `npm src/app` to start the app.
 
-## Development Report
+For convenience and testing purposes, a completed sample conference based on sample inputs can be accessed by selecting `Load from file` in the menu, the `Load a sample conference`.
 
-### Reviewing the specifications
+## Overview
+
+### Specifications
 
 Conference Track Manager was built with an emphasis on convenience and user experience.
 
@@ -97,13 +99,13 @@ const BASE_TALK_START_TIME = '09:00AM';
 
 A track must be at least 360 minutes long to generate a conference schedule from it. It must be at least 420 minutes long for the networking event to start at 5pm, the latest possible time. The first talk of the morning session starts at 9am, which is the basis from which subsequent start times will be calculated.
 
-### User stories and assumptions
+### User stories, assumptions, and implementations
 
 Based on the above specifications and my own preference for providing good user experience, I derived the following user stories:
 
-> "Before entering a new talk, I want to see information about my progress. I want to see how many tracks I have completed, how far I am from completing the current track, and how much time I currently need to fill to complete the track and print the schedule."
+> "Before entering a new talk, I can track information about my progress. I can see how many tracks I have completed, how far I am from completing the current track, and how much time I currently need to fill to complete the track and print the schedule."
 
-Since I require the user to complete at least one full track before a schedule can be generated, I need to provide them with the relevant statistics before each new input. In the app, when starting fresh, it looks like this:
+Since I require the user to complete at least one full track before the options to generate a schedule are available, so I need to provide them with the relevant metrics before each new input. In the app, when starting fresh, it looks like this:
 
 ```
  Welcome to Conference Track Manager v1.0.0!                                                                                                                            
@@ -114,11 +116,12 @@ Since I require the user to complete at least one full track before a schedule c
   ...
  ```
  
- The user can see which track they are currently on, whether it is complete, and how much longer to complete it.
+ The user can see which track they are currently on, whether it is complete, and how much longer to complete it. The user can also view a list of all the talks they added at any time.
  
- > "I want the program to respect the order of my inputs, i.e. the app shouldn't change the order of talks. However, I would like to avoid any downtime before lunch."
+ > "The app respects the order of my inputs, i.e. the app doesn't change the order of talks behind the scenes. However, it tries to fill any avoidable downtime before lunch."
  
 I think it is fair to assume that a conference host would not want the app to shuffle the order of talks around in the name of time efficiency. 
+
 In a usual conference, each talks often provides context for the next, or is part of a specific topic group, so order matters. One very reasonable exception would be to avoid idle time between the last morning talk and lunch, e.g. if the second-to-last morning talk ends at 11:15AM and the last one is 60 minutes long. Then the app would move that talk to the afternoon, but fill those 45 minutes remaining in the morning when possible.
 
 This is the responsible piece of logic in the app:
@@ -145,6 +148,121 @@ This is the responsible piece of logic in the app:
       }                                                                                                                                                                                                                                            
 ...
 ```
+
+> "I can undo one or more inputs if I make a mistake. I'm also able to redo if I change my mind"
+
+Asking potentially dozens of talks by hand is a fairly tedious task for the user. It could be extremely frustrating, then, should they make a spelling mistake, for example, and have to start over. This is why I included a simple undo/redo mechanic in the app, which works by reverting to a previous application state.
+
+As the backbone for that mechanic, and basic state management within the app in general, I wrote this slight extension of `Map`:
+
+```javascript
+// src/state/StateMap.js
+
+class StateMap extends Map {
+  constructor(state) {
+    super();
+    this.initState = Object.freeze({ ...state });
+    this.set('default', this.initState);
+    this.set('current', 'default');
+  }
+
+  isState(obj) {
+    return (
+      Object.keys(obj).length === Object.keys(this.initState).length &&
+      Object.keys(this.initState).every((key) => Object.prototype.hasOwnProperty.call(obj, key),
+      )
+    );
+  }
+
+  resolve(key) {
+    const result = this.get(key);
+
+    if (this.isState(result)) {
+      return result;
+    }
+    if (this.has(result)) {
+      return this.resolve(result);
+    }
+
+    return false;
+  }
+  
+  chain(newState, key = Date.now()) {
+    if (!this.isState(newState)) {
+      return 1;
+    }
+
+    const prevState = this.resolve('current');
+
+    this.set(key, { ...prevState });
+    this.set('previous', key);
+    this.set('current', { ...newState });
+
+    return newState;
+  }
+}
+```
+
+The idea is to allow the user to walk back and forth in state using this pair of functions:
+
+```javascript                                                       
+// src/actions/removeLastTalk.js                                                                                                                               
+                           
+  function removeLastTalk(talks) {                                                                                                                                       
+    const { rawName: key } = talks[talks.length - 1];                                                                                                                    
+                                                                                                                                                                         
+    const prevState = stateMap.resolve(key);                                                                                                                             
+                                                                                                                                                                         
+    stateMap.set('undo', key);                                                                                                                                           
+                                                                                                                                                                         
+    return stateMap.chain({ ...prevState }, key);                                                                                                                        
+  } 
+```
+
+```javascript
+// src/actions/undoRemoveTalk.js
+
+ function undoRemoveTalk() {                                                                                                                                            
+    const state = stateMap.resolve('undo');                                                                                                                              
+                                                                                                                                                                         
+    const key = stateMap.get('undo');                                                                                                                                    
+                                                                                                                                                                         
+    stateMap.delete('undo');                                                                                                                                             
+                                                                                                                                                                         
+    return stateMap.chain({ ...state }, key);                                                                                                                            
+  } 
+```
+
+> "I can save my progress and load it at a later time to resume my work."
+
+If a user needs to enter a lot of talks, they might not have the time and energy to finish in one session. They should be able to save their progress, so they can close the app and load it up at a later at a later time.
+
+For that reason I implemented basic saving/loading capabilities, which works by stringifying the current state and saving it to `.save-state.json` in the folder `.save-states`, or parsing a state object from JSON and loading it into the current state.
+
+Incidentially, here is the state object with its initial value. 
+
+```javascript
+const initState = Object.freeze({
+  completedTrackNum: 0,
+  currentTrackComplete: false,
+  currentTrackDuration: 0,
+  currentTrackNum: 1,
+  lunchEaten: false,
+  maxAfternoonTalkRemaining: 240,
+  maxMorningTalkRemaining: 180,
+  morningComplete: false,
+  nextTalkStartTime: BASE_TALK_START_TIME,
+  talks: [],
+});
+```
+
+`StateMap` is instantiated with it and `main` passes the current state down the function hierarchy on each run.
+
+> "I'm able to write my conference to a format like .csv, so I can view and edit it in programs like Excel, and share it"
+
+Printing the schedules as unicode tables is nice, but it's not portable. As the user, I would like to have something tangible for my efforts, like a spreadsheet file I can share with colleagues, friends, or fellow conference organizers.
+
+JSON works for computers, but it's not optimal for humans. For that reason I added the option and functionality to write the (completed) tracks to CSV (`actions/writeToCSV.js`).
 
 
 
