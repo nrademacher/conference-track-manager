@@ -20,7 +20,6 @@ async function loadFromFile() {
   if (existsSync('.save_states/.save-state.json')) {
     const savedState = readFileSync('.save_states/.save-state.json');
 
-    console.log('test');
     parsedState = JSON.parse(savedState);
 
     input.choices.unshift(
