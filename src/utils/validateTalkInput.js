@@ -3,12 +3,18 @@ const { MIN_TALK_DURATION, MAX_TALK_DURATION } = require('../constants');
 
 function validateTalkInput(talkArr, input) {
   const inputTokens = input.split(' ');
+  const titleToken = inputTokens.slice(0, -1).join(' ');
   const durationToken = inputTokens[inputTokens.length - 1];
+
   if (
     inputTokens.length < 2 ||
     (!durationToken.match(/[0-9]+min/) && durationToken !== 'lightning')
   ) {
     return 'Talk names must be at least one word long and be followed by a duration in minutes.\nExample: "Revolutionary Conference Talk 30min"';
+  }
+
+  if (titleToken.match(/[0-9]+/)) {
+    return 'Talk titles must not include numbers';
   }
 
   const duration = parseMins(durationToken);

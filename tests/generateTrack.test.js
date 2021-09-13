@@ -44,6 +44,6 @@ describe('generateTrack', () => {
     expect(talkbeforeLunchStartTime).toContain('AM');
     expect(talkbeforeLunch).toHaveProperty('session', 'morning');
     expect(talkAfterLunch).toHaveProperty('startTime', '01:00PM');
-    expect(talkAfterLunch).toHaveProperty('session', 'evening');
+    expect(talkAfterLunch).toHaveProperty('session', 'afternoon');
   });
 });

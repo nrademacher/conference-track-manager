@@ -6,7 +6,7 @@ const initState = Object.freeze({
   currentTrackDuration: 0,
   currentTrackNum: 1,
   lunchEaten: false,
-  maxEveningTalkRemaining: 240,
+  maxAfternoonTalkRemaining: 240,
   maxMorningTalkRemaining: 180,
   morningComplete: false,
   nextTalkStartTime: BASE_TALK_START_TIME,

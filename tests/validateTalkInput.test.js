@@ -3,6 +3,7 @@ const { MIN_TALK_DURATION, MAX_TALK_DURATION } = require('../src/constants');
 
 const badInputFormatRes =
   'Talk names must be at least one word long and be followed by a duration in minutes.\nExample: "Revolutionary Conference Talk 30min"';
+const numberinTitleRes = 'Talk titles must not include numbers';
 const disallowedDurationRes = `Talk duration must be in the format "[number]min" and between ${MIN_TALK_DURATION} and ${MAX_TALK_DURATION} minutes long.`;
 const duplicateRes = 'A talk with the same name has already been submitted.';
 
@@ -21,6 +22,20 @@ describe('validateTalkInput rejecting bad input', () => {
     const result = validateTalkInput([], input);
 
     expect(result).toEqual(badInputFormatRes);
+  });
+
+  it('rejects title tokens with numbers in them', () => {
+    const inputOne = 'Foo2Bar 42min';
+    const inputTwo = '777 lightning';
+    const inputThree = 'Hello World 101 lightning';
+
+    const resultOne = validateTalkInput([], inputOne);
+    const resultTwo = validateTalkInput([], inputTwo);
+    const resultThree = validateTalkInput([], inputThree);
+
+    expect(resultOne).toEqual(numberinTitleRes);
+    expect(resultTwo).toEqual(numberinTitleRes);
+    expect(resultThree).toEqual(numberinTitleRes);
   });
 
   it('rejects bad duration tokens', () => {

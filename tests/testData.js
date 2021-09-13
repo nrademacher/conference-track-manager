@@ -36,7 +36,7 @@ const testTalkArr = [
     name: 'Common Ruby Errors',
     duration: 45,
     track: 1,
-    session: 'evening',
+    session: 'afternoon',
     rawName: 'Common Ruby Errors 45min',
   },
   {
@@ -44,7 +44,7 @@ const testTalkArr = [
     name: 'Rails for Python Developers',
     duration: 5,
     track: 1,
-    session: 'evening',
+    session: 'afternoon',
     rawName: 'Rails for Python Developers lightning',
   },
   {
@@ -52,7 +52,7 @@ const testTalkArr = [
     name: 'Communicating Over Distance',
     duration: 60,
     track: 1,
-    session: 'evening',
+    session: 'afternoon',
     rawName: 'Communicating Over Distance 60min',
   },
   {
@@ -60,7 +60,7 @@ const testTalkArr = [
     name: 'Accounting-Driven Development',
     duration: 45,
     track: 1,
-    session: 'evening',
+    session: 'afternoon',
     rawName: 'Accounting-Driven Development 45min',
   },
   {
@@ -68,7 +68,7 @@ const testTalkArr = [
     name: 'Woah',
     duration: 30,
     track: 1,
-    session: 'evening',
+    session: 'afternoon',
     rawName: 'Woah 30min',
   },
   {
@@ -76,7 +76,7 @@ const testTalkArr = [
     name: 'Sit Down and Write',
     duration: 30,
     track: 1,
-    session: 'evening',
+    session: 'afternoon',
     rawName: 'Sit Down and Write 30min',
   },
   {
@@ -108,7 +108,7 @@ const testTalkArr = [
     name: 'Clojure Ate Scala (on my project)',
     duration: 45,
     track: 2,
-    session: 'evening',
+    session: 'afternoon',
     rawName: 'Clojure Ate Scala (on my project) 45min',
   },
   {
@@ -116,7 +116,7 @@ const testTalkArr = [
     name: 'Programming in the Boondocks of Seattle',
     duration: 30,
     track: 2,
-    session: 'evening',
+    session: 'afternoon',
     rawName: 'Programming in the Boondocks of Seattle 30min',
   },
   {
@@ -124,7 +124,7 @@ const testTalkArr = [
     name: 'Ruby vs. Clojure f or Back-End Development',
     duration: 30,
     track: 2,
-    session: 'evening',
+    session: 'afternoon',
     rawName: 'Ruby vs. Clojure f or Back-End Development 30min',
   },
   {
@@ -132,7 +132,7 @@ const testTalkArr = [
     name: 'Ruby on Rails Legacy App Maintenance',
     duration: 60,
     track: 2,
-    session: 'evening',
+    session: 'afternoon',
     rawName: 'Ruby on Rails Legacy App Maintenance 60min',
   },
   {
@@ -140,7 +140,7 @@ const testTalkArr = [
     name: 'A World Without HackerNews',
     duration: 30,
     track: 2,
-    session: 'evening',
+    session: 'afternoon',
     rawName: 'A World Without HackerNews 30min',
   },
   {
@@ -148,7 +148,7 @@ const testTalkArr = [
     name: 'User Interface CSS in Rails Apps',
     duration: 30,
     track: 2,
-    session: 'evening',
+    session: 'afternoon',
     rawName: 'User Interface CSS in Rails Apps 30min',
   },
 ];
