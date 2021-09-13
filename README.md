@@ -109,7 +109,7 @@ Based on the above specifications and my own preference for providing good user 
 
 #### Story #1
 
-> "I am interfacing with a friendly CLI that presents me with options for currently avaiable actions to choose for, such as adding a new talk or printing the schedule."
+> "I am interfacing with a friendly CLI that presents me with options for currently available actions to choose from, such as adding a new talk or printing the schedule."
 
 For each possible state of the application, the user should be prompted and able to choose from a list of options, which in the app are connected to specific `actions`, i.e. functions that have concrete effects the user can observe, such as adding a new talk and seeing the metrics change, removing a talk, listing the talks, saving or writing to file:
 
@@ -281,7 +281,7 @@ class StateMap extends Map {
       return this.resolve(result);
     }
 
-    return false;
+    return 1;
   }
   
   chain(newState, key = Date.now()) {
