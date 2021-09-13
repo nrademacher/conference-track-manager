@@ -4,10 +4,9 @@ const { red, green } = require('chalk');
 const { generateTrack } = require('../helpers');
 
 function writeToCSV(talksArr) {
-  const trackNum = talksArr.slice(-1)[0].track;
+  const { trackNum } = talksArr[talksArr.length - 1];
 
   let trackArr = [];
-
   for (let i = 0; i <= trackNum - 1; i++) {
     const track = generateTrack(talksArr, i + 1);
     trackArr = [...trackArr, ...track];
@@ -21,7 +20,6 @@ function writeToCSV(talksArr) {
   ];
 
   const opts = { fields };
-
   const fileName = `conference-${Date.now()}.csv`;
 
   try {
