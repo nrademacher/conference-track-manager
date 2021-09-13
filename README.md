@@ -103,6 +103,8 @@ A track must be at least 360 minutes long to generate a conference schedule from
 
 Based on the above specifications and my own preference for providing good user experience, I derived the following user stories:
 
+#### 1
+
 > "I am interfacing with a friendly CLI that presents me with options for currently avaiable actions to choose for, such as adding a new talk or printing the schedule."
 
 For each possible state of the application, the user should be prompted and able to choose from a list of options, which in the app are connected to specific `actions`, i.e. functions that have concrete effects the user can observe, such as adding a new talk and seeing the metrics change, removing a talk, listing the talks, saving or writing to file.
@@ -186,6 +188,7 @@ function displayTrackStatsMsg(completedTracks, trackDuration, trackNum) {
 
  The user can see which track they are currently on, whether it is complete, and how much longer to complete it. The user can also view a list of all the talks they added at any time.
  
+ 
  > "The app respects the order of my inputs, i.e. the app doesn't change the order of talks behind the scenes. However, it tries to fill any avoidable downtime before lunch."
  
 I think it is fair to assume that a conference host would not want the app to shuffle the order of talks around in the name of time efficiency. 
@@ -216,6 +219,7 @@ This is the responsible piece of logic in the app:
       }                                                                                                                                                                                                                                            
 ...
 ```
+
 
 > "I can undo one or more inputs if I make a mistake. I'm also able to redo if I change my mind"
 
@@ -302,6 +306,7 @@ function undoRemoveTalk() {
   } 
 ```
 
+
 > "I can save my progress and load it at a later time to resume my work."
 
 If a user needs to enter a lot of talks, they might not have the time and energy to finish in one session. They should be able to save their progress, so they can close the app and load it up at a later at a later time.
@@ -326,6 +331,7 @@ const initState = Object.freeze({
 ```
 
 `StateMap` is instantiated with it and `main` passes the current state down the function hierarchy on each run (see `src/main/main.js`).
+
 
 > "I'm able to write my conference to a format like .csv, so I can view and edit it in programs like Excel, and share it with others."
 
