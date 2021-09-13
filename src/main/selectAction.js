@@ -5,7 +5,7 @@ const {
   removeLastTalk,
   saveToFile,
   writeToCSV,
-  previewSchedule,
+  listTalks,
   undoRemoveTalk,
 } = require('../actions');
 
@@ -20,8 +20,8 @@ async function selectAction(choice, state, callback) {
     case 'Redo':
       undoRemoveTalk();
       return callback();
-    case 'View':
-      previewSchedule(state.talks);
+    case 'List':
+      listTalks(state.talks);
       return callback();
     case 'Print':
       printTrackTables(state.talks, state.completedTrackNum);

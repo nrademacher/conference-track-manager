@@ -11,8 +11,12 @@ async function getActionChoice(completedTrackNum, talks) {
     loop: false,
   };
 
-  if (talks.length && stateMap.get('previous')) {
-    input.choices.push(`Undo adding "${stateMap.get('previous')}"`);
+  if (talks.length) {
+    const { rawName: key } = talks[talks.length - 1];
+
+    if (stateMap.get(key)) {
+      input.choices.push(`Undo adding "${stateMap.get('previous')}"`);
+    }
   }
 
   if (stateMap.get('undo')) {
@@ -26,12 +30,13 @@ async function getActionChoice(completedTrackNum, talks) {
         completedTrackNum,
       )}) to screen`,
       'Write conference to CSV file',
+      'List talks added so far',
       new Separator(),
     );
   }
 
   if (!completedTrackNum && talks.length) {
-    input.choices.push('View talks added so far');
+    input.choices.push('List talks added so far');
   }
 
   if (!completedTrackNum) {

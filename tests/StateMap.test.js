@@ -14,7 +14,7 @@ describe('StateMap instanced with initial state', () => {
     expect(stateMap.initState.baz).toStrictEqual([]);
   });
 
-  it('sets the key "default" to the initial State', () => {
+  it('sets the key "default" to the initial state', () => {
     const initState = { foo: 'bar', bar: 42, baz: [] };
     const stateMap = new StateMap(initState);
 
@@ -80,7 +80,7 @@ describe('the chain method', () => {
     expect(result).toStrictEqual(newState);
   });
 
-  it('it maps the previous state to the key "previous"', () => {
+  it('maps the previous state to the key "previous"', () => {
     const initState = { foo: 'bar', bar: 42, baz: [] };
     const newState = { foo: 'bar', bar: 42, baz: ['bar', 42] };
     const stateMap = new StateMap(initState);
@@ -91,7 +91,7 @@ describe('the chain method', () => {
     expect(result).toStrictEqual(initState);
   });
 
-  it('it optionally maps the previous state to any given key', () => {
+  it('optionally maps the previous state to any given key', () => {
     const initState = { foo: 'bar', bar: 42, baz: [] };
     const newState = { foo: 'bar', bar: 42, baz: ['bar', 42] };
     const stateMap = new StateMap(initState);

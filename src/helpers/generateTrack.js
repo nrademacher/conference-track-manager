@@ -15,10 +15,8 @@ function generateTrack(talksArr, trackNum) {
     duration: 60,
   };
 
-  const networkingStartTime = incrementTime(
-    eveningTalks.slice(-1)[0].startTime,
-    eveningTalks.slice(-1)[0].duration,
-  );
+  const { startTime, duration } = eveningTalks[eveningTalks.length - 1];
+  const networkingStartTime = incrementTime(startTime, duration);
 
   const networkingEvent = {
     track: trackNum,
