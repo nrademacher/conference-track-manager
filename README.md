@@ -79,7 +79,7 @@ These specifications define the basic parameters of the app:
 
 > No talk title has numbers in it.
 
-I interpreted this to mean talk titles must not contain number, so the will throw an error if the user tries to use them in a title
+I interpreted this to mean that talk titles must not contain number, so the app will throw an error if the user tries to use them in a title.
 
 > All talk lengths are either in minutes (not hours) or lightning (5 minutes).
 > Presenters will be very punctual; there needs to be no gap between sessions.
