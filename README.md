@@ -52,7 +52,7 @@ Since this is a Node.js app, `node` is required to run it. Any relatively recent
 
 With `node` installed, run `npm i` in the root folder to install the dependencies, then `npm start` or `npm src/app` to start the app.
 
-For convenience and testing purposes, a completed sample conference based on sample inputs can be accessed by selecting `Load from file` in the menu, the `Load a sample conference`.
+For convenience and testing purposes, a completed sample conference based on sample inputs can be accessed by selecting `Load from file` in the menu, then `Load a sample conference`.
 
 
 ## Developer Overview
