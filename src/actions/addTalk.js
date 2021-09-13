@@ -20,8 +20,7 @@ async function addTalk(state) {
   const talkName = talkTokens.slice(0, -1).join(' ');
   const talkDuration = parseMins(talkTokens[talkTokens.length - 1]);
 
-  // If added duration would exceed maximum track duration,
-  // add another track and reset all relevant variables
+  // If added duration would exceed maximum track duration, start new track
   if (state.currentTrackDuration + talkDuration >= MAX_TRACK_DURATION) {
     state.currentTrackNum += 1;
     state.currentTrackDuration = 0;
@@ -59,14 +58,13 @@ async function addTalk(state) {
     }
   } else if (state.maxEveningTalkRemaining - talkDuration >= 0) {
     state.morningComplete = true;
+    session = 'evening';
+    state.maxEveningTalkRemaining -= talkDuration;
 
     if (!state.lunchEaten) {
       state.nextTalkStartTime = '01:00PM';
       state.lunchEaten = true;
     }
-
-    session = 'evening';
-    state.maxEveningTalkRemaining -= talkDuration;
   }
 
   const talkData = {

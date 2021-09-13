@@ -1,13 +1,13 @@
 const { stateMap } = require('../state');
 
-function removeLastTalk(state) {
-  const key = state.talks.slice(-1)[0].rawName;
+function removeLastTalk(talks) {
+  const { rawName: key } = talks[talks.length - 1];
 
   const prevState = stateMap.resolve(key);
 
-  stateMap.set('_undo', key);
+  stateMap.set('undo', key);
 
-  return stateMap.chain(prevState, key);
+  return stateMap.chain({ ...prevState }, key);
 }
 
 module.exports = { removeLastTalk };
