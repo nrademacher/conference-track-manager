@@ -5,6 +5,7 @@ const { getActionChoice } = require('./getActionChoice');
 
 async function main() {
   const state = stateMap.resolve('current');
+  console.log(state);
 
   displayTrackStatsMsg(
     state.completedTrackNum,

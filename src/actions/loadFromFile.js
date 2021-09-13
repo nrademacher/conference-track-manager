@@ -20,6 +20,7 @@ async function loadFromFile() {
   if (existsSync('.save_states/.save-state.json')) {
     const savedState = readFileSync('.save_states/.save-state.json');
 
+    console.log('test');
     parsedState = JSON.parse(savedState);
 
     input.choices.unshift(
@@ -44,11 +45,11 @@ async function loadFromFile() {
 
     console.log(green('\nLoad successful!'));
 
-    return stateMap.chain(parsedState, `LOAD_ACTION:SAMPLE_CONF-${Date.now()}`);
+    return stateMap.chain(parsedState);
   } else if (selection.includes('Load saved conference')) {
     console.log(green('\nLoad successful!'));
 
-    return stateMap.chain(parsedState, `LOAD_ACTION:SAVED_CONF-${Date.now()}`);
+    return stateMap.chain(parsedState);
   }
 
   return 1;

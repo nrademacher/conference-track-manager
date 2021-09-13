@@ -1,9 +1,8 @@
 const { writeFileSync } = require('fs');
 const { green, red } = require('chalk');
-const { appState } = require('../state');
 
-function saveToFile() {
-  const saveState = JSON.stringify(appState);
+function saveToFile(state) {
+  const saveState = JSON.stringify(state);
 
   try {
     writeFileSync('.save_states/.save-state.json', saveState);
