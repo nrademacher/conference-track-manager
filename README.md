@@ -165,7 +165,7 @@ async function selectAction(choice, state, callback) {
       writeToCSV(state.talks);
       return callback();
     case 'Save':
-      saveToFile();
+      saveToFile({ ...state });
       return callback();
     case 'Load':
       await loadFromFile();
