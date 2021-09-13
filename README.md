@@ -340,5 +340,4 @@ This concludes the overview over the major functionality of the app in the conte
 
 This has been a fun and interesting project, and there definitely remains room for future improvements and features.
 
-Thank you for reading!
 
