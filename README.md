@@ -335,7 +335,7 @@ function undoRemoveTalk() {
 
 > "I can save my progress and load it at a later time to resume my work."
 
-If a user needs to enter a lot of talks, they might not have the time and energy to finish in one session. They should be able to save their progress, so they can close the app and load it up at a later at a later time.
+If a user needs to enter a lot of talks, they might not have the time and energy to finish in one session. They should be able to save their progress, so they can close the app and load it up at a later point in time.
 
 For that reason I implemented basic saving/loading capabilities, which work by stringifying the current state and saving it to `.save-state.json` in the folder `.save-states`, or parsing a state object from JSON and loading it into the current state (see `src/actions/saveToFile.js` and `src/actions/loadFromFile.js`.
 
