@@ -228,7 +228,7 @@ function displayTrackStatsMsg(completedTracks, trackDuration, trackNum) {
  
 I think it is fair to assume that a conference host would not want the app to shuffle the order of talks around in the name of time efficiency. 
 
-In a usual conference, each talks often provides context for the next, or is part of a specific topic group, so order matters. One very reasonable exception would be to avoid idle time between the last morning talk and lunch, e.g. if the second-to-last morning talk ends at 11:15AM and the last one is 60 minutes long. Then the app would move that talk to the afternoon, but fill those 45 minutes remaining in the morning when possible.
+In a conference, each talks often provides context for the next, or is part of a specific topic group, so order matters. One very reasonable exception would be to avoid idle time between the last morning talk and lunch, e.g. if the second-to-last morning talk ends at 11:15AM and the last one is 60 minutes long. Then the app would move that talk to the afternoon, but fill those 45 minutes remaining in the morning when possible.
 
 This is the responsible piece of logic in the app:
 
