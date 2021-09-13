@@ -222,7 +222,7 @@ This is the responsible piece of logic in the app:
           .filter((talk) => talk.session === 'morning')                                                                                                                  
           .slice(-1);                                                                                                                                                    
         fillMorningStartTime = incrementTime(                                                                                                                            
-          fillMorningStartTime,                                                                                                                                          
+          prevMorningTalk.startTime,                                                                                                                                          
           prevMorningTalk.duration,                                                                                                                                      
         );                                                                                                                                                               
       }                                                                                                                                                                                                                                            
