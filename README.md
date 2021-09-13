@@ -45,6 +45,7 @@ Track 2:
 ...
 ```
 
+
 ## Getting Started
 
 Since this is a Node.js app, `node` is required to run it. Any relatively recent version should work. I recommend version `12` or higher.
@@ -52,6 +53,7 @@ Since this is a Node.js app, `node` is required to run it. Any relatively recent
 With `node` installed, run `npm i` in the root folder to install the dependencies, then `npm start` or `npm src/app` to start the app.
 
 For convenience and testing purposes, a completed sample conference based on sample inputs can be accessed by selecting `Load from file` in the menu, the `Load a sample conference`.
+
 
 ## Developer Overview
 
@@ -99,11 +101,13 @@ const BASE_TALK_START_TIME = '09:00AM';
 
 A track must be at least 360 minutes long to generate a conference schedule from it. It must be at least 420 minutes long for the networking event to start at 5pm, the latest possible time. The first talk of the morning session starts at 9am, which is the basis from which subsequent start times will be calculated by the app (see `src/utils/parseMins.js` and `src/utils/incrementTime.js`).
 
+
 ### User stories and implementations
 
 Based on the above specifications and my own preference for providing good user experience, I derived the following user stories:
 
-#### 1
+
+#### Story #1
 
 > "I am interfacing with a friendly CLI that presents me with options for currently avaiable actions to choose for, such as adding a new talk or printing the schedule."
 
@@ -150,6 +154,9 @@ async function selectAction(choice, state, callback) {
 
 In the app, the function recursively calls `main` (which then re-provisions it with the state), unless the user chooses `Exit`.
 
+
+#### Story #2
+
 > "Before entering a new talk, I can track information about my progress. I can see how many tracks I have completed, how far I am from completing the current track, and how much time I currently need to fill to complete the track and print the schedule."
 
 Since I require the user to complete at least one full track before the options to generate a schedule are available, so I need to provide them with the relevant metrics before each new input. In the app, when starting fresh, it looks like this:
@@ -189,6 +196,8 @@ function displayTrackStatsMsg(completedTracks, trackDuration, trackNum) {
  The user can see which track they are currently on, whether it is complete, and how much longer to complete it. The user can also view a list of all the talks they added at any time.
  
  
+#### Story #3
+ 
  > "The app respects the order of my inputs, i.e. the app doesn't change the order of talks behind the scenes. However, it tries to fill any avoidable downtime before lunch."
  
 I think it is fair to assume that a conference host would not want the app to shuffle the order of talks around in the name of time efficiency. 
@@ -220,6 +229,8 @@ This is the responsible piece of logic in the app:
 ...
 ```
 
+
+#### Story #4
 
 > "I can undo one or more inputs if I make a mistake. I'm also able to redo if I change my mind"
 
@@ -291,7 +302,6 @@ function removeLastTalk(talks) {
   } 
 ```
 
-
 ```javascript
 // src/actions/undoRemoveTalk.js
 
@@ -306,6 +316,8 @@ function undoRemoveTalk() {
   } 
 ```
 
+
+#### Story #5
 
 > "I can save my progress and load it at a later time to resume my work."
 
@@ -332,6 +344,8 @@ const initState = Object.freeze({
 
 `StateMap` is instantiated with it and `main` passes the current state down the function hierarchy on each run (see `src/main/main.js`).
 
+
+#### Story #6
 
 > "I'm able to write my conference to a format like .csv, so I can view and edit it in programs like Excel, and share it with others."
 
