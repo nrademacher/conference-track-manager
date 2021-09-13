@@ -55,7 +55,7 @@ For convenience and testing purposes, a completed sample conference based on sam
 
 ## Overview
 
-### Specifications
+### The specifications
 
 Conference Track Manager was built with an emphasis on convenience and user experience.
 
@@ -99,7 +99,7 @@ const BASE_TALK_START_TIME = '09:00AM';
 
 A track must be at least 360 minutes long to generate a conference schedule from it. It must be at least 420 minutes long for the networking event to start at 5pm, the latest possible time. The first talk of the morning session starts at 9am, which is the basis from which subsequent start times will be calculated.
 
-### User stories, assumptions, and implementations
+### User stories and implementations
 
 Based on the above specifications and my own preference for providing good user experience, I derived the following user stories:
 
@@ -205,10 +205,10 @@ class StateMap extends Map {
 
 The idea is to allow the user to walk back and forth in state using this pair of functions:
 
-```javascript                                                       
+ ```javascript                                                    
 // src/actions/removeLastTalk.js                                                                                                                               
                            
-  function removeLastTalk(talks) {                                                                                                                                       
+function removeLastTalk(talks) {                                                                                                                                       
     const { rawName: key } = talks[talks.length - 1];                                                                                                                    
                                                                                                                                                                          
     const prevState = stateMap.resolve(key);                                                                                                                             
@@ -219,10 +219,11 @@ The idea is to allow the user to walk back and forth in state using this pair of
   } 
 ```
 
+
 ```javascript
 // src/actions/undoRemoveTalk.js
 
- function undoRemoveTalk() {                                                                                                                                            
+function undoRemoveTalk() {                                                                                                                                            
     const state = stateMap.resolve('undo');                                                                                                                              
                                                                                                                                                                          
     const key = stateMap.get('undo');                                                                                                                                    
@@ -237,7 +238,7 @@ The idea is to allow the user to walk back and forth in state using this pair of
 
 If a user needs to enter a lot of talks, they might not have the time and energy to finish in one session. They should be able to save their progress, so they can close the app and load it up at a later at a later time.
 
-For that reason I implemented basic saving/loading capabilities, which works by stringifying the current state and saving it to `.save-state.json` in the folder `.save-states`, or parsing a state object from JSON and loading it into the current state.
+For that reason I implemented basic saving/loading capabilities, which work by stringifying the current state and saving it to `.save-state.json` in the folder `.save-states`, or parsing a state object from JSON and loading it into the current state (see `src/actions/saveToFile.js` and `src/actions/loadFromFile.js`.
 
 Incidentially, here is the state object with its initial value. 
 
@@ -256,13 +257,15 @@ const initState = Object.freeze({
 });
 ```
 
-`StateMap` is instantiated with it and `main` passes the current state down the function hierarchy on each run.
+`StateMap` is instantiated with it and `main` passes the current state down the function hierarchy on each run (see `src/main/main.js`).
 
 > "I'm able to write my conference to a format like .csv, so I can view and edit it in programs like Excel, and share it"
 
 Printing the schedules as unicode tables is nice, but it's not portable. As the user, I would like to have something tangible for my efforts, like a spreadsheet file I can share with colleagues, friends, or fellow conference organizers.
 
 JSON works for computers, but it's not optimal for humans. For that reason I added the option and functionality to write the (completed) tracks to CSV (`actions/writeToCSV.js`).
+
+
 
 
 
