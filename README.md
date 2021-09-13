@@ -11,7 +11,7 @@ A Node.js CLI tool for building, displaying, managing, and saving conference tra
 * Save and load your progress any time
 
 ### Sample output
-```
+```bash
 Track 1:
 ╔════════════╤═════════════════════════════════════════════╤════════════╗
 ║ START TIME │ TALK NAME                                   │ DURATION   ║
@@ -111,18 +111,19 @@ Based on the above specifications and my own preference for providing good user 
 
 > "I am interfacing with a friendly CLI that presents me with options for currently avaiable actions to choose for, such as adding a new talk or printing the schedule."
 
-For each possible state of the application, the user should be prompted and able to choose from a list of options, which in the app are connected to specific `actions`, i.e. functions that have concrete effects the user can observe, such as adding a new talk and seeing the metrics change, removing a talk, listing the talks, saving or writing to file.
+For each possible state of the application, the user should be prompted and able to choose from a list of options, which in the app are connected to specific `actions`, i.e. functions that have concrete effects the user can observe, such as adding a new talk and seeing the metrics change, removing a talk, listing the talks, saving or writing to file:
 
 ```bash
 
 ? What would you like to do? (Use arrow keys)
 > Add a talk
+  Undo adding "Hello World 15min"
   ------
   Print completed tracks (2) to screen
   Write conference to CSV file
   List talks added so far
   ------
-  Load from file
+(Move up and down to reveal more choices)
   ...
 ```
 
