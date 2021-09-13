@@ -10,6 +10,18 @@ A Node.js CLI tool for building, displaying, managing, and saving conference tra
 * Undo/redo mechanic in case you need to go back
 * Save and load your progress any time
 
+### Sample input
+```bash
+> Writing Fast Tests Against Enterprise Rails 60min
+> Overdoing it in Python 45min
+> Lua for the Masses 30min
+> Ruby Errors from Mismatched Gem Versions 45min
+> Common Ruby Errors 45min
+> Rails for Python Developers lightning
+> Communicating Over Distance 60min
+...
+```
+
 ### Sample output
 ```
 Track 1:
