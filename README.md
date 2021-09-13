@@ -97,7 +97,7 @@ const MAX_TALK_DURATION = 60;
 const BASE_TALK_START_TIME = '09:00AM';
 ```
 
-A track must be at least 360 minutes long to generate a conference schedule from it. It must be at least 420 minutes long for the networking event to start at 5pm, the latest possible time. The first talk of the morning session starts at 9am, which is the basis from which subsequent start times will be calculated.
+A track must be at least 360 minutes long to generate a conference schedule from it. It must be at least 420 minutes long for the networking event to start at 5pm, the latest possible time. The first talk of the morning session starts at 9am, which is the basis from which subsequent start times will be calculated by the app (see `src/utils/parseMins.js` and `src/utils/incrementTime.js`).
 
 ### User stories and implementations
 
