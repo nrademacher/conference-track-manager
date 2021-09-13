@@ -11,7 +11,7 @@ A Node.js CLI tool for building, displaying, managing, and saving conference tra
 * Save and load your progress any time
 
 ### Sample output
-```bash
+```
 Track 1:
 ╔════════════╤═════════════════════════════════════════════╤════════════╗
 ║ START TIME │ TALK NAME                                   │ DURATION   ║
