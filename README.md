@@ -60,7 +60,7 @@ Track 2:
 
 ## Getting Started
 
-Since this is a Node.js app, `node` is required to run it. Any relatively recent version should work. I recommend version `12` or higher.
+Since this is a Node.js app, `node` is required to run it. Any relatively recent version should work. I recommend version `12.20.0` or higher.
 
 With `node` installed, run `npm i` in the root folder to install the dependencies, then `npm start` or `npm src/app` to start the app.
 
