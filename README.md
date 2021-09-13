@@ -173,7 +173,7 @@ In the app, the function recursively calls `main` (which then re-provisions it w
 
 > "Before entering a new talk, I can track information about my progress. I can see how many tracks I have completed, how far I am from completing the current track, and how much time I currently need to fill to complete the track and print the schedule."
 
-Since I require the user to complete at least one full track before the options to generate a schedule are available, so I need to provide them with the relevant metrics before each new input. In the app, when starting fresh, it looks like this:
+Since I require the user to complete at least one full track before the options to generate a schedule become available, I need to provide them with the relevant metrics before each new input. In the app, when starting fresh, it looks like this:
 
 ```bash
  Welcome to Conference Track Manager v1.0.0!                                                                                                                            
