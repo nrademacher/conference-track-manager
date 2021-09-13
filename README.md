@@ -351,7 +351,7 @@ If a user needs to enter a lot of talks, they might not have the time and energy
 
 For that reason I implemented basic saving/loading capabilities, which work by stringifying the current state and saving it to `.save-state.json` in the folder `.save-states`, or parsing a state object from JSON and loading it into the current state (see `src/actions/saveToFile.js` and `src/actions/loadFromFile.js`.
 
-Incidentially, here is the state object with its initial value. 
+Incidentially, here is the state object with the initial values. 
 
 ```javascript
 const initState = Object.freeze({
