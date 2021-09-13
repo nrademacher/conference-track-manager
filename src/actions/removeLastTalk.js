@@ -1,7 +1,7 @@
 const { stateMap } = require('../state');
 
 function removeLastTalk(state) {
-  const key = state.talks.slice(-1)[0].rawName;
+  const key = talks.slice(-1)[0].rawName;
 
   const prevState = stateMap.resolve(key);
 

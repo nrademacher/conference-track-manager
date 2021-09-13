@@ -48,9 +48,9 @@ async function addTalk(state) {
     state.maxMorningTalkRemaining -= talkDuration;
 
     if (state.morningComplete) {
-      const [prevMorningTalk] = state.talks
-        .filter((talk) => talk.session === 'morning')
-        .slice(-1);
+      const [prevMorningTalk] = state.talks.
+        filter((talk) => talk.session === 'morning').
+        slice(-1);
       fillMorningStartTime = incrementTime(
         fillMorningStartTime,
         prevMorningTalk.duration,

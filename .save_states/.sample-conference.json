@@ -1,7 +1,7 @@
 {
   "maxMorningTalkRemaining": 15,
   "maxEveningTalkRemaining": 15,
-  "morningFull": true,
+  "morningComplete": true,
   "currentTrackNum": 2,
   "currentTrackComplete": true,
   "completedTrackNum": 2,

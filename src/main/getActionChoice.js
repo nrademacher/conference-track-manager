@@ -11,8 +11,8 @@ async function getActionChoice(completedTrackNum, talks) {
     loop: false,
   };
 
-  if (talks.length && stateMap.has(talks.slice(-1)[0].rawName)) {
-    input.choices.push(`Undo adding "${talks.slice(-1)[0].rawName}"`);
+  if (talks.length && stateMap.has('previous')) {
+    input.choices.push(`Undo adding "${stateMap.get('previous')}"`);
   }
 
   if (stateMap.get('undo')) {

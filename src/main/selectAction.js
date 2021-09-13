@@ -15,10 +15,10 @@ async function selectAction(choice, state, callback) {
       await addTalk({ ...state });
       return callback();
     case 'Undo':
-      removeLastTalk({ ...state });
+      removeLastTalk(state.talks);
       return callback();
     case 'Redo':
-      undoRemoveTalk({ ...state });
+      undoRemoveTalk();
       return callback();
     case 'View':
       previewSchedule(state.talks);

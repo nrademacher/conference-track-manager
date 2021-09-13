@@ -3,34 +3,43 @@ class StateMap extends Map {
     super();
     this.initState = Object.freeze({ ...state });
     this.set('default', this.initState);
-    this.set('current', this.initState);
+    this.set('current', 'default');
   }
 
   isState(obj) {
     return (
       Object.keys(obj).length === Object.keys(this.initState).length &&
-      Object.keys(obj).every((key) => this.initState.hasOwnProperty(key))
+      Object.keys(this.initState).every((key) =>
+        Object.prototype.hasOwnProperty.call(obj, key),
+      )
     );
   }
 
-  chain(newState, key = Date.now(), prevState = this.get('current')) {
-    this.set(key, { ...prevState });
-    this.set('previous', key);
-    this.set('current', { ...newState });
+  resolve(key) {
+    const result = this.get(key);
 
-    return newState;
+    if (this.isState(result)) {
+      return result;
+    }
+    if (this.has(result)) {
+      return this.resolve(result);
+    }
+
+    return false;
   }
 
-  resolve(key) {
-    const res = this.get(key);
+  chain(newState, key = Date.now()) {
+    const prevState = this.resolve('current');
 
-    if (this.isState(res)) {
-      return res;
+    if (this.isState(newState) && this.isState(prevState)) {
+      this.set(key, { ...prevState });
+      this.set('previous', key);
+      this.set('current', { ...newState });
+
+      return newState;
     }
-    if (this.has(res)) {
-      return this.resolve(res);
-    }
-    return false;
+
+    return 1;
   }
 }
 
