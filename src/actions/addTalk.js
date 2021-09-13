@@ -26,7 +26,7 @@ async function addTalk(state) {
     state.currentTrackDuration = 0;
     state.currentTrackComplete = false;
     state.maxMorningTalkRemaining = 180;
-    state.maxEveningTalkRemaining = 240;
+    state.maxAfternoonTalkRemaining = 240;
     state.nextTalkStartTime = BASE_TALK_START_TIME;
     state.morningFull = false;
     state.lunchEaten = false;
@@ -42,24 +42,24 @@ async function addTalk(state) {
   let session;
   let fillMorningStartTime;
 
-  // Determine morning/evening session based on available time
+  // Determine morning/afternoon session based on available time
   if (state.maxMorningTalkRemaining - talkDuration >= 0) {
     session = 'morning';
     state.maxMorningTalkRemaining -= talkDuration;
 
     if (state.morningComplete) {
-      const [prevMorningTalk] = state.talks.
-        filter((talk) => talk.session === 'morning').
-        slice(-1);
+      const [prevMorningTalk] = state.talks
+        .filter((talk) => talk.session === 'morning')
+        .slice(-1);
       fillMorningStartTime = incrementTime(
         fillMorningStartTime,
         prevMorningTalk.duration,
       );
     }
-  } else if (state.maxEveningTalkRemaining - talkDuration >= 0) {
+  } else if (state.maxAfternoonTalkRemaining - talkDuration >= 0) {
     state.morningComplete = true;
-    session = 'evening';
-    state.maxEveningTalkRemaining -= talkDuration;
+    session = 'afternoon';
+    state.maxAfternoonTalkRemaining -= talkDuration;
 
     if (!state.lunchEaten) {
       state.nextTalkStartTime = '01:00PM';

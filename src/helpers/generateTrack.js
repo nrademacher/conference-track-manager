@@ -4,8 +4,8 @@ function generateTrack(talksArr, trackNum) {
   const morningTalks = talksArr.filter(
     (talk) => talk.session === 'morning' && talk.track === trackNum,
   );
-  const eveningTalks = talksArr.filter(
-    (talk) => talk.session === 'evening' && talk.track === trackNum,
+  const afternoonTalks = talksArr.filter(
+    (talk) => talk.session === 'afternoon' && talk.track === trackNum,
   );
 
   const lunch = {
@@ -15,7 +15,7 @@ function generateTrack(talksArr, trackNum) {
     duration: 60,
   };
 
-  const { startTime, duration } = eveningTalks[eveningTalks.length - 1];
+  const { startTime, duration } = afternoonTalks[afternoonTalks.length - 1];
   const networkingStartTime = incrementTime(startTime, duration);
 
   const networkingEvent = {
@@ -25,7 +25,7 @@ function generateTrack(talksArr, trackNum) {
     duration: 'Open-ended',
   };
 
-  const track = [...morningTalks, lunch, ...eveningTalks, networkingEvent];
+  const track = [...morningTalks, lunch, ...afternoonTalks, networkingEvent];
 
   return track;
 }
