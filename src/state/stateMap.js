@@ -9,8 +9,7 @@ class StateMap extends Map {
   isState(obj) {
     return (
       Object.keys(obj).length === Object.keys(this.initState).length &&
-      Object.keys(this.initState).every((key) =>
-        Object.prototype.hasOwnProperty.call(obj, key),
+      Object.keys(this.initState).every((key) => Object.prototype.hasOwnProperty.call(obj, key),
       )
     );
   }
@@ -25,7 +24,7 @@ class StateMap extends Map {
       return this.resolve(result);
     }
 
-    return false;
+    return 1;
   }
 
   chain(newState, key = Date.now()) {

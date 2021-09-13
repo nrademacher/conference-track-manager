@@ -44,11 +44,11 @@ async function loadFromFile() {
 
     console.log(green('\nLoad successful!'));
 
-    return stateMap.chain(parsedState, `LOAD_ACTION:SAMPLE_CONF-${Date.now()}`);
+    return stateMap.chain(parsedState);
   } else if (selection.includes('Load saved conference')) {
     console.log(green('\nLoad successful!'));
 
-    return stateMap.chain(parsedState, `LOAD_ACTION:SAVED_CONF-${Date.now()}`);
+    return stateMap.chain(parsedState);
   }
 
   return 1;
