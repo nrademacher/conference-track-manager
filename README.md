@@ -11,7 +11,7 @@ A Node.js CLI tool for building, displaying, managing, and saving conference tra
 * Save and load your progress any time
 
 ### Sample input
-```bash
+```
 > Writing Fast Tests Against Enterprise Rails 60min
 > Overdoing it in Python 45min
 > Lua for the Masses 30min
