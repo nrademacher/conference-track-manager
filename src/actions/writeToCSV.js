@@ -4,7 +4,7 @@ const { red, green } = require('chalk');
 const { generateTrack } = require('../helpers');
 
 function writeToCSV(talksArr) {
-  const { trackNum } = talksArr[talksArr.length - 1];
+  const { track: trackNum } = talksArr[talksArr.length - 1];
 
   let trackArr = [];
   for (let i = 0; i <= trackNum - 1; i++) {
