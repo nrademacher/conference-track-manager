@@ -126,9 +126,8 @@ This is the responsible piece of logic in the app:
 ```javascript
 // src/actions/addTalk.js
 ...
-
    let session;                                                                                                                                                         
-    let fillMorningStartTime;                                                                                                                                            
+   let fillMorningStartTime;                                                                                                                                            
                                                                                                                                                                          
     // Determine morning/afternoon session based on available time                                                                                                       
     if (state.maxMorningTalkRemaining - talkDuration >= 0) {                                                                                                             
@@ -143,7 +142,7 @@ This is the responsible piece of logic in the app:
           fillMorningStartTime,                                                                                                                                          
           prevMorningTalk.duration,                                                                                                                                      
         );                                                                                                                                                               
-      }                                                                                                                                                                                                                                                 
+      }                                                                                                                                                                                                                                            
 ...
 ```
 
