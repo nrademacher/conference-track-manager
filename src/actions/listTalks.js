@@ -1,11 +1,9 @@
-const { bold, blueBright } = require('chalk');
+const { bold } = require('chalk');
 
 function listTalks(talks) {
   console.log('\n');
   talks.forEach((talk, i) =>
-    console.log(
-      `${i + 1}. ${bold(talk)} - ${blueBright(talk.duration)} minutes`,
-    ),
+    console.log(`${i + 1}. ${bold(talk.name)} - ${talk.duration} minutes`),
   );
   console.log('\n');
 
