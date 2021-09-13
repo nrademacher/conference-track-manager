@@ -175,7 +175,7 @@ In the app, the function recursively calls `main` (which then re-provisions it w
 
 Since I require the user to complete at least one full track before the options to generate a schedule are available, so I need to provide them with the relevant metrics before each new input. In the app, when starting fresh, it looks like this:
 
-```
+```bash
  Welcome to Conference Track Manager v1.0.0!                                                                                                                            
                                                                                                                                                                          
           Completed tracks: 0 / 1 - fill another 360 minutes to complete current track                                                                                   
