@@ -277,8 +277,10 @@ class StateMap extends Map {
 
   isState(obj) {
     return (
+      obj instanceof Object &&
       Object.keys(obj).length === Object.keys(this.initState).length &&
-      Object.keys(this.initState).every((key) => Object.prototype.hasOwnProperty.call(obj, key),
+      Object.keys(this.initState).every((key) =>
+        Object.prototype.hasOwnProperty.call(obj, key),
       )
     );
   }
