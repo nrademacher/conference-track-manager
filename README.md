@@ -62,7 +62,7 @@ Track 2:
 
 Since this is a Node.js app, `node` is required to run it. Any relatively recent version should work. I recommend version `12.20.0` or higher.
 
-With `node` installed, run `npm i` in the root folder to install the dependencies, then `npm start` or `npm src/app` to start the app.
+With `node` installed, run `npm i` in the root folder to install the dependencies, then `npm start` or `node src/app` to start the app.
 
 For convenience and testing purposes, a completed sample conference based on sample inputs can be accessed by selecting `Load from file` in the menu, then `Load a sample conference`.
 
@@ -75,9 +75,15 @@ Conference Track Manager was built with an emphasis on convenience and user expe
 
 Here are the specifications I was given and the assumptions I derived from them while developing the app:
 
+
+#### Spec #1
+
 > The conference has multiple tracks each of which has a morning and afternoon session.
 
 I took this to mean that any given conference *can* and probably should have multiple tracks, but must have at least one complete track.
+
+
+#### Specs #2, #3, #4, #5
 
 > Each session contains multiple talks.
 > Morning sessions begin at 9am and must finish by 12 noon, for lunch.
@@ -89,9 +95,15 @@ These specifications define the basic parameters of the app:
 2. The remaining time minus lunch leaves a maximum of four hours of the rest of the track, since the networking event mustn't start later than 5pm
 3. Conversely, the afternoon session must not be shorter than three hours, since networking can't start before 4pm
 
+
+#### Spec #6
+
 > No talk title has numbers in it.
 
 I interpreted this to mean that talk titles must not contain number, so the app will throw an error if the user tries to use them in a title.
+
+
+#### Specs #7 and #8
 
 > All talk lengths are either in minutes (not hours) or lightning (5 minutes).
 > Presenters will be very punctual; there needs to be no gap between sessions.
