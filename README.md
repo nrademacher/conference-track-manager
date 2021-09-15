@@ -86,8 +86,11 @@ I took this to mean that any given conference *can* and probably should have mul
 #### Specs #2, #3, #4, #5
 
 > Each session contains multiple talks.
+
 > Morning sessions begin at 9am and must finish by 12 noon, for lunch.
+
 > Afternoon sessions begin at 1pm and must finish in time for the networking event.
+
 > The networking event can start no earlier than 4:00 and no later than 5:00.
 
 These specifications define the basic parameters of the app:
