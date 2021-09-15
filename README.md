@@ -106,6 +106,7 @@ I interpreted this to mean that talk titles must not contain number, so the app 
 #### Specs #7 and #8
 
 > All talk lengths are either in minutes (not hours) or lightning (5 minutes).
+
 > Presenters will be very punctual; there needs to be no gap between sessions.
 
 That makes it relatively to determine the logic which slots the talks into either morning or afternoon session, based on available time.
