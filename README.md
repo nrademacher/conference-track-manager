@@ -194,7 +194,7 @@ async function selectAction(choice, state, callback) {
 }
 ```
 
-In the app, the function recursively calls `main` (which then re-provisions it with the state), unless the user chooses `Exit`.
+In the app, the function recursively calls `main` (which then re-provisions it with the current state), unless the user chooses `Exit`.
 
 
 #### Story #2
@@ -276,7 +276,7 @@ This is the responsible piece of logic in the app:
 
 > "I can undo one or more inputs if I make a mistake. I'm also able to redo if I change my mind"
 
-Asking potentially dozens of talks by hand is a fairly tedious task for the user. It could be extremely frustrating, then, should they make a spelling mistake, for example, and have to start over. This is why I included a simple undo/redo mechanic in the app, which works by reverting to a previous application state.
+Asking potentially dozens of talks by hand is a fairly tedious task for the user. It could be a potentially very frustrating experience, then, should they make a spelling mistake, for example, and have to start over. This is why I included a simple undo/redo mechanic in the app, which works by reverting to a previous application state.
 
 As the backbone for that mechanic, and basic state management within the app in general, I wrote this slight extension of `Map`:
 
@@ -311,7 +311,7 @@ class StateMap extends Map {
       return this.resolve(result);
     }
 
-    return 1;
+    return undefined;
   }
   
   chain(newState, key = Date.now()) {
