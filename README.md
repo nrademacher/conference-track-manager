@@ -336,7 +336,7 @@ class StateMap extends Map {
       return this.resolve(result);
     }
 
-    return undefined;
+    return null;
   }
   
   chain(newState, key = Date.now()) {
