@@ -36,9 +36,9 @@ class StateMap extends Map {
 
     const prevState = this.resolve('current');
 
-    this.set(key, { ...prevState });
+    this.set(key, Object.freeze({ ...prevState }));
     this.set('previous', key);
-    this.set('current', { ...newState });
+    this.set('current', Object.freeze({ ...newState }));
 
     return this;
   }
