@@ -26,7 +26,7 @@ class StateMap extends Map {
       return this.resolve(result);
     }
 
-    return 1;
+    return undefined;
   }
 
   chain(newState, key = Date.now()) {
