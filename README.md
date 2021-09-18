@@ -328,7 +328,7 @@ class StateMap extends Map {
     this.set('previous', key);
     this.set('current', { ...newState });
 
-    return newState;
+    return this;
   }
 }
 ```
