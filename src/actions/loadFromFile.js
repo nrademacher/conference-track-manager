@@ -44,9 +44,13 @@ async function loadFromFile() {
 
     console.log(green('\nLoad successful!'));
 
-    return stateMap.chain(parsedState);
+    stateMap.delete('undo');
+
+    return stateMap.chain(parsedState, 'Load sample conference');
   } else if (selection.includes('Load saved conference')) {
     console.log(green('\nLoad successful!'));
+
+    stateMap.delete('undo');
 
     return stateMap.chain(parsedState);
   }
