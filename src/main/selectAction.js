@@ -6,7 +6,7 @@ const {
   saveToFile,
   writeToCSV,
   listTalks,
-  undoRemoveTalk,
+  undoAction,
 } = require('../actions');
 
 async function selectAction(choice, state, callback) {
@@ -14,11 +14,11 @@ async function selectAction(choice, state, callback) {
     case 'Add':
       await addTalk({ ...state });
       return callback();
-    case 'Undo':
+    case 'Remove':
       removeLastTalk(state.talks);
       return callback();
-    case 'Redo':
-      undoRemoveTalk();
+    case 'Undo':
+      undoAction();
       return callback();
     case 'List':
       listTalks(state.talks);

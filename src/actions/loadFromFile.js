@@ -44,15 +44,17 @@ async function loadFromFile() {
 
     console.log(green('\nLoad successful!'));
 
-    stateMap.delete('undo');
+    // Set undo key for undoAction()
+    stateMap.set('undo', 'Load sample conference');
 
+    // Add new state and map previous state to key 'undo' points to
     return stateMap.chain(parsedState, 'Load sample conference');
   } else if (selection.includes('Load saved conference')) {
     console.log(green('\nLoad successful!'));
 
-    stateMap.delete('undo');
+    stateMap.set('undo', 'Load saved conference');
 
-    return stateMap.chain(parsedState);
+    return stateMap.chain(parsedState, 'Load saved conference');
   }
 
   return 1;

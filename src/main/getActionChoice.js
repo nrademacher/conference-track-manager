@@ -14,13 +14,20 @@ async function getActionChoice(completedTrackNum, talks) {
   if (talks.length) {
     const { rawName: key } = talks[talks.length - 1];
 
-    if (stateMap.get(key)) {
-      input.choices.push(`Undo adding "${stateMap.get('previous')}"`);
+    if (stateMap.has(key)) {
+      input.choices.push(`Remove "${key}"`);
     }
   }
 
   if (stateMap.get('undo')) {
-    input.choices.push(`Redo adding "${stateMap.get('undo')}"`);
+    if (
+      stateMap.get('undo').includes('Load saved conference') ||
+      stateMap.get('undo').includes('Load sample conference')
+    ) {
+      input.choices.push(`Undo "${stateMap.get('undo')}"`);
+    } else {
+      input.choices.push(`Undo removing "${stateMap.get('undo')}"`);
+    }
   }
 
   if (completedTrackNum) {

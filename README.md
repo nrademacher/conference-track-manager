@@ -179,7 +179,7 @@ async function selectAction(choice, state, callback) {
       removeLastTalk(state.talks);
       return callback();
     case 'Redo':
-      undoRemoveTalk();
+      undoAction();
       return callback();
     case 'List':
       listTalks(state.talks);
@@ -369,9 +369,9 @@ function removeLastTalk(talks) {
 ```
 
 ```javascript
-// src/actions/undoRemoveTalk.js
+// src/actions/undoAction.js
 
-function undoRemoveTalk() {                                                                                                                                            
+function undoRemove() {                                                                                                                                            
   const state = stateMap.resolve('undo');                                                                                                                              
                                                                                                                                                                          
   const key = stateMap.get('undo');                                                                                                                                    

@@ -48,9 +48,9 @@ async function addTalk(state) {
     state.maxMorningTalkRemaining -= talkDuration;
 
     if (state.morningComplete) {
-      const [prevMorningTalk] = state.talks.
-        filter((talk) => talk.session === 'morning').
-        slice(-1);
+      const [prevMorningTalk] = state.talks
+        .filter((talk) => talk.session === 'morning')
+        .slice(-1);
       fillMorningStartTime = incrementTime(
         prevMorningTalk.startTime,
         prevMorningTalk.duration,
@@ -87,6 +87,9 @@ async function addTalk(state) {
       talkDuration,
     );
   }
+
+  // make sure undo key isn't set (would skip back to state mapped to it, if set)
+  stateMap.delete('undo');
 
   // Use talk name as key for previous state for redo/undo actions
   return stateMap.chain(state, talks.talk);

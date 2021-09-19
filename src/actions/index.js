@@ -1,6 +1,6 @@
 const { addTalk } = require('./addTalk');
 const { removeLastTalk } = require('./removeLastTalk');
-const { undoRemoveTalk } = require('./undoRemoveTalk');
+const { undoAction } = require('./undoAction');
 const { listTalks } = require('./listTalks');
 const { printTrackTables } = require('./printTrackTables');
 const { saveToFile } = require('./saveToFile');
@@ -10,7 +10,7 @@ const { writeToCSV } = require('./writeToCSV');
 module.exports = {
   addTalk,
   removeLastTalk,
-  undoRemoveTalk,
+  undoAction,
   listTalks,
   printTrackTables,
   saveToFile,

@@ -1,6 +1,6 @@
 const { stateMap } = require('../state');
 
-function undoRemoveTalk() {
+function undoAction() {
   const state = stateMap.resolve('undo');
 
   const key = stateMap.get('undo');
@@ -10,4 +10,4 @@ function undoRemoveTalk() {
   return stateMap.chain({ ...state }, key);
 }
 
-module.exports = { undoRemoveTalk };
+module.exports = { undoAction };
