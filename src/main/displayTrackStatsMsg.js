@@ -7,7 +7,7 @@ function displayTrackStatsMsg(completedTracks, trackDuration, trackNum) {
   const fillTrackMsg = `fill another ${blue(
     MIN_TRACK_DURATION - trackDuration,
   )} minutes to complete current track`;
-  
+
   const leftInTrackMsg = `${blue(
     MAX_TRACK_DURATION - trackDuration,
   )} minutes remaining in this track`;
@@ -19,7 +19,7 @@ function displayTrackStatsMsg(completedTracks, trackDuration, trackNum) {
   }\n`;
 
   console.log(message);
-  
+
   return 0;
 }
 

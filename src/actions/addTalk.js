@@ -51,9 +51,9 @@ async function addTalk(state) {
 
     // Try to fill gap before lunch, else move to afternoon
     if (state.morningComplete) {
-      const [prevMorningTalk] = state.talks
-        .filter((talk) => talk.session === 'morning')
-        .slice(-1);
+      const [prevMorningTalk] = state.talks.
+        filter((talk) => talk.session === 'morning').
+        slice(-1);
       fillMorningStartTime = incrementTime(
         prevMorningTalk.startTime,
         prevMorningTalk.duration,
