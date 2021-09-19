@@ -374,7 +374,7 @@ function removeLastTalk(talks) {
 ```javascript
 // src/actions/undoAction.js
 
-function undoRemove() {                                                                                                                                            
+function undoAction() {                                                                                                                                            
   const state = stateMap.resolve('undo');                                                                                                                              
                                                                                                                                                                          
   const key = stateMap.get('undo');                                                                                                                                    
