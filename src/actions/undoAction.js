@@ -1,13 +1,17 @@
-const { stateMap } = require('../state');
+const { useStateKey } = require('../state');
 
 function undoAction() {
-  const state = stateMap.resolve('undo');
+  const { getValue, discardKey } = useStateKey('undo');
 
-  const key = stateMap.get('undo');
+  // Get the state key that 'undo' was mapped to
+  const key = getValue();
 
-  stateMap.delete('undo');
+  // Free up 'undo' key
+  discardKey();
 
-  return stateMap.chain({ ...state }, key);
+  const { state, chainState } = useStateKey(key);
+
+  return chainState({ ...state });
 }
 
 module.exports = { undoAction };

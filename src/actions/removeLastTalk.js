@@ -1,13 +1,14 @@
-const { stateMap } = require('../state');
+const { useStateKey } = require('../state');
 
 function removeLastTalk(talks) {
   const { rawName: key } = talks[talks.length - 1];
 
-  const prevState = stateMap.resolve(key);
+  const { state, setProxyKey, chainState } = useStateKey(key);
 
-  stateMap.set('undo', key);
+  // Points to key until undo action or next undoable action is executed
+  setProxyKey('undo');
 
-  return stateMap.chain({ ...prevState }, key);
+  return chainState(state);
 }
 
 module.exports = { removeLastTalk };

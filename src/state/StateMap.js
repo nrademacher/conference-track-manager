@@ -4,6 +4,7 @@ class StateMap extends Map {
     this.initState = Object.freeze({ ...state });
     this.set('default', this.initState);
     this.set('current', 'default');
+    this.set('previous', null);
   }
 
   isState(obj) {
@@ -40,7 +41,7 @@ class StateMap extends Map {
     this.set('previous', key);
     this.set('current', Object.freeze({ ...newState }));
 
-    return this;
+    return newState;
   }
 }
 

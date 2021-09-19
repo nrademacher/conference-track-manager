@@ -1,9 +1,11 @@
 const { prompt, Separator } = require('inquirer');
 const { existsSync, readFileSync } = require('fs');
 const { green, red } = require('chalk');
-const { stateMap } = require('../state');
+const { useStateKey } = require('../state');
 
 async function loadFromFile() {
+  const { setProxyKey, chainState } = useStateKey();
+
   const input = {
     type: 'list',
     message: 'Choose an option',
@@ -44,17 +46,17 @@ async function loadFromFile() {
 
     console.log(green('\nLoad successful!'));
 
-    // Set undo key for undoAction()
-    stateMap.set('undo', 'Load sample conference');
+    setProxyKey('Load a sample conference');
+    setProxyKey('undo', 'Load a sample conference');
 
-    // Add new state and map previous state to key 'undo' points to
-    return stateMap.chain(parsedState, 'Load sample conference');
+    return chainState(parsedState);
   } else if (selection.includes('Load saved conference')) {
     console.log(green('\nLoad successful!'));
 
-    stateMap.set('undo', 'Load saved conference');
+    setProxyKey('Load saved conference');
+    setProxyKey('undo', 'Load saved conference');
 
-    return stateMap.chain(parsedState, 'Load saved conference');
+    return chainState(parsedState);
   }
 
   return 1;

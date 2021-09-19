@@ -350,39 +350,82 @@ class StateMap extends Map {
     this.set('previous', key);
     this.set('current', Object.freeze({ ...newState }));
 
-    return this;
+    return 0;
   }
 }
+```
+
+```javascript
+// src/state/map.js
+...
+
+const map = new StateMap(initState);
 ```
 
 The idea is to allow the user to walk back and forth in state using this pair of functions:
 
  ```javascript                                                    
 // src/actions/removeLastTalk.js                                                                                                                               
-                           
-function removeLastTalk(talks) {                                                                                                                                       
-   const { rawName: key } = talks[talks.length - 1];                                                                                                                    
-                                                                                                                                                                         
-   const prevState = stateMap.resolve(key);                                                                                                                             
-                                                                                                                                                                         
-   stateMap.set('undo', key);                                                                                                                                           
-                                                                                                                                                                         
-   return stateMap.chain({ ...prevState }, key);                                                                                                                        
-  } 
+
+function removeLastTalk(talks) {
+  const { rawName: key } = talks[talks.length - 1];
+
+  const { state, setProxyKey, chainState } = useStateKey(key);
+
+  // Points to key until undo action or next undoable action is executed
+  setProxyKey('undo');
+
+  return chainState(state);
+}
 ```
 
 ```javascript
 // src/actions/undoAction.js
 
-function undoAction() {                                                                                                                                            
-  const state = stateMap.resolve('undo');                                                                                                                              
-                                                                                                                                                                         
-  const key = stateMap.get('undo');                                                                                                                                    
-                                                                                                                                                                         
-  stateMap.delete('undo');                                                                                                                                             
-                                                                                                                                                                         
-  return stateMap.chain({ ...state }, key);                                                                                                                            
- } 
+function undoAction() {
+  const { getValue, discardKey } = useStateKey('undo');
+
+  // Get the state key that 'undo' was mapped to
+  const key = getValue();
+
+  // Free up 'undo' key
+  discardKey();
+
+  const { state, chainState } = useStateKey(key);
+
+  return chainState({ ...state });
+}
+```
+
+As you can see, the `map` instance of `StateMap` isn't exposed to the functions directly but indirectly via a hook-like facade:
+
+```javascript
+// src/state/useStateKey.js
+
+const { map } = require('./map');
+
+function useStateKey(stateKey = map.get('current')) {
+  const state = map.resolve(stateKey);
+
+  const chainState = (newState) => map.chain(newState, stateKey);
+
+  const keyExists = (key = stateKey) => map.has(key);
+
+  const getValue = (key = stateKey) => map.get(key);
+
+  const setProxyKey = (proxyKey, key = stateKey) => map.set(proxyKey, key);
+
+  const discardKey = (key = stateKey) => map.delete(key);
+
+  return {
+    state,
+    chainState,
+    getValue,
+    keyExists,
+    discardKey,
+    setProxyKey,
+  };
+}
 ```
 
 

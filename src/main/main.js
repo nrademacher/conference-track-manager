@@ -1,10 +1,10 @@
-const { stateMap } = require('../state');
+const { useStateKey } = require('../state');
 const { selectAction } = require('./selectAction');
 const { displayTrackStatsMsg } = require('./displayTrackStatsMsg');
 const { getActionChoice } = require('./getActionChoice');
 
 async function main() {
-  const state = stateMap.resolve('current');
+  const { state } = useStateKey('current');
 
   displayTrackStatsMsg(
     state.completedTrackNum,

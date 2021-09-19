@@ -4,10 +4,12 @@ const {
   MAX_TRACK_DURATION,
   BASE_TALK_START_TIME,
 } = require('../constants');
-const { stateMap } = require('../state');
 const { validateTalkInput, parseMins, incrementTime } = require('../utils');
+const { useStateKey } = require('../state');
 
 async function addTalk(state) {
+  const { discardKey, setProxyKey, chainState } = useStateKey();
+
   const input = {
     type: 'input',
     name: 'talk',
@@ -47,6 +49,7 @@ async function addTalk(state) {
     session = 'morning';
     state.maxMorningTalkRemaining -= talkDuration;
 
+    // Try to fill gap before lunch, else move to afternoon
     if (state.morningComplete) {
       const [prevMorningTalk] = state.talks
         .filter((talk) => talk.session === 'morning')
@@ -80,7 +83,7 @@ async function addTalk(state) {
 
   state.talks = [...state.talks, talkData];
 
-  // Do not increment next start time if talk fills remaining morning session time
+  // Don't increment next start time if talk fills remaining morning session time
   if (!fillMorningStartTime) {
     state.nextTalkStartTime = incrementTime(
       state.nextTalkStartTime,
@@ -88,11 +91,13 @@ async function addTalk(state) {
     );
   }
 
-  // make sure undo key isn't set (would skip back to state mapped to it, if set)
-  stateMap.delete('undo');
+  // Make sure undo key is unset, otherwise would skip back to state mapped to it
+  discardKey('undo');
 
-  // Use talk name as key for previous state for redo/undo actions
-  return stateMap.chain(state, talks.talk);
+  // Use talk name as key for current state for redo/undo actions
+  setProxyKey(talks.talk);
+
+  return chainState(state);
 }
 
 module.exports = { addTalk };

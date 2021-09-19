@@ -1,8 +1,10 @@
 const { bold } = require('chalk');
 const { prompt, Separator } = require('inquirer');
-const { stateMap } = require('../state');
+const { useStateKey } = require('../state');
 
 async function getActionChoice(completedTrackNum, talks) {
+  const { getValue, keyExists } = useStateKey('current');
+
   const input = {
     type: 'list',
     name: 'selection',
@@ -14,19 +16,20 @@ async function getActionChoice(completedTrackNum, talks) {
   if (talks.length) {
     const { rawName: key } = talks[talks.length - 1];
 
-    if (stateMap.has(key)) {
+    if (keyExists(key)) {
       input.choices.push(`Remove "${key}"`);
     }
   }
 
-  if (stateMap.get('undo')) {
+  if (keyExists('undo')) {
+    console.log(getValue('undo'));
     if (
-      stateMap.get('undo').includes('Load saved conference') ||
-      stateMap.get('undo').includes('Load sample conference')
+      getValue('undo').includes('Load saved conference') ||
+      getValue('undo').includes('Load a sample conference')
     ) {
-      input.choices.push(`Undo "${stateMap.get('undo')}"`);
+      input.choices.push(`Undo "${getValue('undo')}"`);
     } else {
-      input.choices.push(`Undo removing "${stateMap.get('undo')}"`);
+      input.choices.push(`Undo removing "${getValue('undo')}"`);
     }
   }
 

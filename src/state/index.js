@@ -1,4 +1,3 @@
-const { StateMap } = require('./stateMap');
-const { initState } = require('./initState');
+const { useStateKey } = require('./useStateKey');
 
-module.exports = { stateMap: new StateMap(initState) };
+module.exports = { useStateKey };
