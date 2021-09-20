@@ -393,7 +393,7 @@ function undoAction() {
 
   const { state, chainState } = useStateKey(key);
 
-  return chainState({ ...state });
+  return chainState(state);
 }
 ```
 
